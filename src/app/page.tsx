@@ -8,7 +8,6 @@ import { api } from '@/services/api'
 export default function Home() {
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
-  const [locationName, setLocationName] = useState('')
   const { data, isLoading, errorMessage } = useVisualCrossing({
     key: 'RR7S5LQMPP4CUQEG5CF9LN2JV',
     lat: latitude,
