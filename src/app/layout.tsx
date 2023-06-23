@@ -1,8 +1,6 @@
-'use client'
+import QueryClient from '@/QueryClient'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { QueryClientProvider } from 'react-query'
-import { queryClient } from '@/services/queryClient'
 
 const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({
@@ -12,10 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <QueryClientProvider client={queryClient}>
-
+      <QueryClient>
         <body className={inter.className}>{children}</body>
-      </QueryClientProvider>
+      </QueryClient>
     </html>
   )
 }
