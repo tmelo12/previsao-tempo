@@ -44,8 +44,8 @@ export default function WeatherComponent() {
       locationLabel={nameLocal.data ? nameLocal.data.slice(8) : 'Loading'}
       data={data}
       lang="pt"
-      unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
-      showForecast
+      unitsLabels={{ temperature: 'º C', windSpeed: 'Km/h' }}
+    // showForecast
     />
   )
 }
