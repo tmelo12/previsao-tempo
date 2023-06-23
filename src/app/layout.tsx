@@ -5,12 +5,6 @@ import { QueryClientProvider } from 'react-query'
 import { queryClient } from '@/services/queryClient'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata = {
-  title: 'Previsão do Tempo',
-  description: 'Previsão do Tempo',
-}
-
 export default function RootLayout({
   children,
 }: {
