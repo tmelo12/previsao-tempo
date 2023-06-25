@@ -25,7 +25,7 @@ export default function WeatherCard() {
   };
 
   const { data, refetch, isFetching } = useQuery('name_location', async () => {
-    const response = await apiWeather.get(`/forecast.json?key=6862b4c8fbfc486bafd154914220804&q=${latitude}${','}${longitude}&days=1&aqi=yes&lang=pt`)
+    const response = await apiWeather.get(`/forecast.json?key=6862b4c8fbfc486bafd154914220804&q=${latitude},${longitude}&days=1&aqi=yes&lang=pt`)
     console.log('response', response)
     return response;
   });
@@ -38,61 +38,63 @@ export default function WeatherCard() {
   }, [city, isFetching]);
 
   return (
-    <Card sx={{ display: 'flex' }}>
-      {
-        isFetching ?
-          <CircularProgress />
-          :
-          <>
-            <CardMedia
-              component="img"
-              sx={{ width: 300, backgroundColor: '#172243' }}
-              image={`/animation-ready/${data?.data.current.condition.code}.svg`}
-              // image={'//cdn.weatherapi.com/weather/64x64/day/395.png'}
-              alt="Animação previsão do tempo"
-            />
-            <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                  Selecione o município...
-                </Typography>
-                <FormControl fullWidth>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    startAdornment={<LocationOnIcon style={{ color: '#172243' }} />}
-                    id="demo-simple-select"
-                    value={city}
-                    onChange={handleChange}
-                    fullWidth
-                    style={{ backgroundColor: '#FFF', borderColor: '#FFF' }}
-                  >
-                    {municipios.map(item => (
-                      <MenuItem key={item.name} value={item.name}>{item.name}</MenuItem>
-                    ))
-                    }
-                  </Select>
-                </FormControl>
-                <Typography variant="h3" style={{ color: '#ff9933', fontWeight: 'bold' }} component="div">
-                  {data?.data.current.temp_c} °C
-                </Typography>
-                <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                  {data?.data.current.condition.text}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                  Máx: {data?.data.forecast.forecastday[0].day.maxtemp_c} °C
-                </Typography>
-                <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                  Mín: {data?.data.forecast.forecastday[0].day.mintemp_c} °C
-                </Typography>
-                <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                  Sensação Térmica: {data?.data.current.feelslike_c} °C
-                </Typography>
-              </CardActions>
-            </Box>
-          </>
-      }
-    </Card>
+    <div>
+      <Card sx={{ display: 'flex' }}>
+        {
+          isFetching ?
+            <CircularProgress />
+            :
+            <>
+              <CardMedia
+                component="img"
+                sx={{ width: 300, backgroundColor: '#172243' }}
+                image={`/animation-ready/${data?.data.current.condition.code}.svg`}
+                // image={'//cdn.weatherapi.com/weather/64x64/day/395.png'}
+                alt="Animação previsão do tempo"
+              />
+              <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243' }}>
+                <CardContent sx={{ flex: '1 0 auto' }}>
+                  <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
+                    Selecione o município...
+                  </Typography>
+                  <FormControl fullWidth>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      startAdornment={<LocationOnIcon style={{ color: '#172243' }} />}
+                      id="demo-simple-select"
+                      value={city}
+                      onChange={handleChange}
+                      fullWidth
+                      style={{ backgroundColor: '#FFF', borderColor: '#FFF' }}
+                    >
+                      {municipios.map(item => (
+                        <MenuItem key={item.name} value={item.name}>{item.name}</MenuItem>
+                      ))
+                      }
+                    </Select>
+                  </FormControl>
+                  <Typography variant="h3" style={{ color: '#ff9933', fontWeight: 'bold' }} component="div">
+                    {data?.data.current.temp_c} °C
+                  </Typography>
+                  <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
+                    {data?.data.current.condition.text}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
+                    Máx: {data?.data.forecast.forecastday[0].day.maxtemp_c} °C
+                  </Typography>
+                  <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
+                    Mín: {data?.data.forecast.forecastday[0].day.mintemp_c} °C
+                  </Typography>
+                  <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
+                    Sensação Térmica: {data?.data.current.feelslike_c} °C
+                  </Typography>
+                </CardActions>
+              </Box>
+            </>
+        }
+      </Card>
+    </div>
   );
 }
