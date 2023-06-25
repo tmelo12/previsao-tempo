@@ -1,8 +1,6 @@
 'use client'
 import ReactWeather, { useVisualCrossing } from 'react-open-weather'
 import { useState, useEffect } from 'react'
-import { useQuery } from 'react-query'
-import { api } from '@/services/api'
 
 export default function WeatherComponent() {
   const [latitude, setLatitude] = useState(0)
@@ -32,16 +30,11 @@ export default function WeatherComponent() {
     }
   }, []);
 
-  const nameLocal = useQuery('name_location', async () => {
-    const response = await api.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/-3.0394191,-59.9450429?key=RR7S5LQMPP4CUQEG5CF9LN2JV&lang=pt&unitGroup=metric&iconSet=icons2&include=days,current&elements=datetimeEpoch,tempmax,tempmin,temp,humidity,windspeed,icon,description')
-    return response.data.timezone;
-  });
-
   return (
     <ReactWeather
       isLoading={isLoading}
       errorMessage={errorMessage}
-      locationLabel={nameLocal.data ? nameLocal.data.slice(8) : 'Loading'}
+      locationLabel={'Nome Municipio'}
       data={data}
       lang="pt"
       unitsLabels={{ temperature: 'º C', windSpeed: 'Km/h' }}

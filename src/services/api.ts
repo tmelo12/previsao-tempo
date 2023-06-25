@@ -1,3 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export const api = axios.create({})
+export const apiWeather = axios.create({
+  baseURL: 'http://api.weatherapi.com/v1'
+})
