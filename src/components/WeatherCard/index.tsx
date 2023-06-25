@@ -14,6 +14,7 @@ import { municipios } from '@/constants/municipios';
 import { useQuery } from 'react-query';
 import { apiWeather } from '@/services/api';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useMediaQuery } from '@mui/material';
 
 export default function WeatherCard() {
   const [city, setCity] = React.useState('Alvarães');
@@ -35,11 +36,13 @@ export default function WeatherCard() {
     setLatitude(selectedCity?.coords.lat);
     setLongitude(selectedCity?.coords.lon);
     refetch();
-  }, [city, isFetching]);
+  }, [city]);
+
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   return (
     <div>
-      <Card sx={{ display: 'flex' }}>
+      <Card sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', maxWidth: isMobile ? 400 : '100%', margin: isMobile ? '0 auto' : 0, }}>
         {
           isFetching ?
             <CircularProgress />
@@ -47,7 +50,7 @@ export default function WeatherCard() {
             <>
               <CardMedia
                 component="img"
-                sx={{ width: 340, backgroundColor: '#172243' }}
+                sx={{ width: 400, backgroundColor: '#172243' }}
                 image={`/animation-ready/${data?.data.current.condition.code}.svg`}
                 // image={'//cdn.weatherapi.com/weather/64x64/day/116.png'}
                 alt="Animação previsão do tempo"
@@ -89,19 +92,19 @@ export default function WeatherCard() {
                 <CardActions>
                   <img src={`/animation-ready/thermometer-mercury.svg`} width={50} height={50} />
                   <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                    Máx: {data?.data.forecast.forecastday[0].day.maxtemp_c} °C
+                    Máx: {data?.data.forecast.forecastday[0].day.maxtemp_c}°C
                   </Typography>
                   <img src={`/animation-ready/thermometer-mercury-cold.svg`} width={50} height={50} />
                   <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                    Mín: {data?.data.forecast.forecastday[0].day.mintemp_c} °C
+                    Mín: {data?.data.forecast.forecastday[0].day.mintemp_c}°C
                   </Typography>
                   <img src={`/animation-ready/thermometer.svg`} width={50} height={50} />
                   <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
-                    Sensação Térmica: {data?.data.current.feelslike_c} °C
+                    Sensação Térmica: {data?.data.current.feelslike_c}°C
                   </Typography>
                 </CardActions>
                 <Typography variant="subtitle2" style={{ color: '#fff', fontSize: 12 }} component="div">
-                  Última atualização em: {new Date(data?.data.current.last_updated).toLocaleString()} via <a target='_blank' href='https://www.weatherapi.com/' style={{ color: '#FFF', fontWeight: 'bold', fontSize: 12 }}>Weather Api</a>
+                  * Última atualização em: {new Date(data?.data.current.last_updated).toLocaleString()} via <a target='_blank' href='https://www.weatherapi.com/' style={{ color: '#FFF', fontWeight: 'bold', fontSize: 12 }}>Weather Api</a>
                 </Typography>
               </Box>
             </>
