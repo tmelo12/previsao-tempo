@@ -39,7 +39,6 @@ export default function WeatherCard() {
   }, [city]);
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-
   return (
     <div>
       <Card sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', maxWidth: isMobile ? 400 : '100%', margin: isMobile ? '0 auto' : 0, }}>
@@ -51,7 +50,7 @@ export default function WeatherCard() {
               <CardMedia
                 component="img"
                 sx={{ width: 400, backgroundColor: '#172243' }}
-                image={data?.data.current.condition.is_day === 1 ? `/animation-ready/${data?.data.current.condition.code}.svg` : `/animation-ready/${data?.data.current.condition.code}_night.svg`}
+                image={data?.data.current.is_day === 1 ? `/animation-ready/${data?.data.current.condition.code}.svg` : `/animation-ready/${data?.data.current.condition.code}_night.svg`}
                 // image={'//cdn.weatherapi.com/weather/64x64/day/116.png'}
                 alt="Animação previsão do tempo"
               />
