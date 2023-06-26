@@ -36,12 +36,12 @@ export default function WeatherCard() {
     setLatitude(selectedCity?.coords.lat);
     setLongitude(selectedCity?.coords.lon);
     refetch();
-  }, [city]);
+  }, [city, refetch]);
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   return (
     <div>
-      <Card sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', maxWidth: isMobile ? 400 : '100%', margin: isMobile ? '0 auto' : 0, padding: 5 }}>
+      <Card sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', maxWidth: isMobile ? 400 : '100%', margin: isMobile ? '0 auto' : 0 }}>
         {
           isFetching ?
             <CircularProgress />
@@ -54,7 +54,7 @@ export default function WeatherCard() {
                 // image={'//cdn.weatherapi.com/weather/64x64/day/116.png'}
                 alt="Animação previsão do tempo"
               />
-              <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243', padding: 2 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243', padding: -50 }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
                     Selecione o município...
