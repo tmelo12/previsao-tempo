@@ -54,7 +54,7 @@ export default function WeatherCard() {
                 // image={'//cdn.weatherapi.com/weather/64x64/day/116.png'}
                 alt="Animação previsão do tempo"
               />
-              <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243', padding: -50 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', backgroundColor: '#172243' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography variant="subtitle1" style={{ color: '#fff' }} component="div">
                     Selecione o município...
