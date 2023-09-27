@@ -81,7 +81,7 @@ export default function WeatherCard() {
                     {data?.data.current.condition.text}
                   </Typography>
                   <Typography variant="subtitle1" style={{ color: '#fff', alignItems: 'center', display: 'flex' }} component="div">
-                    <img src={`/animation-ready/humidity.svg`} width={50} height={50} style={{ float: 'left' }} /> Humidade: {data?.data.current.humidity}%
+                    <img src={`/animation-ready/humidity.svg`} width={50} height={50} style={{ float: 'left' }} /> Umidade: {data?.data.current.humidity}%
                   </Typography>
                   <Typography variant="subtitle1" style={{ color: '#fff', alignItems: 'center', display: 'flex' }} component="div">
                     <img src={`/animation-ready/wind.svg`} width={50} height={50} style={{ float: 'left' }} /> Vento: apróx. {data?.data.current.wind_kph}km/h
